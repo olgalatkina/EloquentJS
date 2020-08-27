@@ -1961,8 +1961,8 @@ function characterScript(code) {
 
 let roseDragon = "🌹и🐉";
 for (let char of roseDragon) {
-  console.log(char);
-  console.log(char.codePointAt(0));
+  // console.log(char);
+  // console.log(char.codePointAt(0));
 }
 
 function countBy(items, groupName) {
@@ -1999,6 +1999,30 @@ function textScripts(text) {
     .join(", ");
 }
 
-console.log(textScripts("中国有一句俗话 'woof', 叫做“爱美之心 'тяв'"));
-console.log(textScripts("🌹и🐉"));
-console.log(textScripts("1, 2, 3, 4, 5"));
+// console.log(textScripts("中国有一句俗话 'woof', 叫做“爱美之心 'тяв'"));
+// console.log(textScripts("🌹и🐉"));
+// console.log(textScripts("1, 2, 3, 4, 5"));
+
+const dominantDirection1 = (arr) => {
+  let directions = countBy(arr, (n) => n.direction);
+
+  return directions.reduce((acc, el) => (acc.count >= el.count ? acc : el))
+    .name;
+};
+
+// console.log(dominantDirection1(SCRIPTS));
+
+function dominantDirection(text) {
+  let counted = countBy(text, (char) => {
+    let script = characterScript(char.codePointAt(0));
+    return script ? script.direction : "none";
+  }).filter(({ name }) => name != "none");
+
+  if (counted.length == 0) return "ltr";
+
+  return counted.reduce((a, b) => (a.count > b.count ? a : b)).name;
+}
+
+console.log(dominantDirection(""));
+console.log(dominantDirection("Hello!"));
+console.log(dominantDirection("Hey, مساء الخير"));
