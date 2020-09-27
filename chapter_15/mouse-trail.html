@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .trail {
+      /* className for the trail elements */
+      position: absolute;
+      height: 6px;
+      width: 6px;
+      border-radius: 3px;
+      background: teal;
+    }
+
+    body {
+      height: 300px;
+    }
+  </style>
+  <title>Mouse trail</title>
+</head>
+
+<body>
+  <div class="trail"></div>
+
+  <script>
+    const dotMain = document.querySelector('.trail');
+
+    const getDots = (quantity = 12, node) => {
+      let arr = [];
+      for (let i = 0; i < quantity; i++) {
+        const node = dotMain.cloneNode(true);
+        document.body.appendChild(node);
+        arr.push(node);
+      }
+      return arr;
+    }
+    const dots = getDots(12, dotMain);
+
+    // let currentDot = 0;
+    // window.addEventListener("mousemove", event => {
+    //   console.log(event);
+    //   let dot = dots[currentDot];
+    //   dot.style.left = (event.pageX - 3) + "px";
+    //   dot.style.top = (event.pageY - 3) + "px";
+    //   // ===========
+    //   currentDot = (currentDot + 1) % dots.length;
+    //   // ===========
+    //   // if (currentDot < dots.length - 1) {
+    //   //   currentDot += 1;
+    //   // } else {
+    //   //   currentDot = 0;
+    //   // }
+    //   // ===========
+    //   // currentDot = currentDot < dots.length - 1 ? currentDot += 1 : 0;
+    // });
+
+    const setEventListener = () => {
+      let currentDot = 0;
+      window.addEventListener("mousemove", (evt) => {
+        let dot = dots[currentDot];
+        dot.style.left = (evt.pageX - 3) + "px";
+        dot.style.top = (evt.pageY - 3) + "px";
+        currentDot = (currentDot + 1) % dots.length;
+      });
+    }
+    setEventListener();
+  </script>
+</body>
+
+</html>
