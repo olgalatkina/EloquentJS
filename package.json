@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/olgalatkina/EloquentJS/issues"
   },
-  "homepage": "https://github.com/olgalatkina/EloquentJS#readme"
+  "homepage": "https://github.com/olgalatkina/EloquentJS#readme",
+  "dependencies": {
+    "date-names": "^0.1.13",
+    "dijkstrajs": "^1.0.1",
+    "ordinal": "^1.0.3"
+  }
 }
